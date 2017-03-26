@@ -21,17 +21,17 @@ window.renderStatistics = function (ctx, names, times) {
   var indexBestName = 0;
 
   var badTime = times[0];
-  var indexBadName = 0;
+  //var indexBadName = 0; // ругается сборщик пулреквеста
 
   while (lengthMassive--) {
     i = lengthMassive;
     if (times[i] < bestTime) {
       bestTime = times[i];
       indexBestName = i;
-    } else if (times[i] > badTime) {
+    } /*else if (times[i] > badTime) {
         badTime = times[i];
         indexBadName = i;
-      }
+      }*/
   }
   // ------
 
@@ -64,7 +64,6 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(names[i], initialX + indent * i, initialY + 20);
 
     var timeX = (-times[i] * step) - 10; // смещение значения времени игрока по Y
-   // ctx.fillStyle = 'black';
     ctx.fillText(Math.ceil(times[i]), initialX + indent * i, initialY + timeX); // вывод времени игрока
   }
 
