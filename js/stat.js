@@ -28,8 +28,8 @@ window.renderStatistics = function (ctx, names, times) {
       bestTime = times[i];
       indexBestName = i;
     } else if (times[i] > badTime) {
-        badTime = times[i];
-      }
+      badTime = times[i];
+    }
   }
   // ------
 
