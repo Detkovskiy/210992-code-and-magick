@@ -27,7 +27,9 @@ window.renderStatistics = function (ctx, names, times) {
     if (times[i] < bestTime) {
       bestTime = times[i];
       indexBestName = i;
-    }
+    } else if (times[i] > badTime) {
+        badTime = times[i];
+      }
   }
   // ------
 
