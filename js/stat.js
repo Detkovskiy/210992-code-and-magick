@@ -21,17 +21,13 @@ window.renderStatistics = function (ctx, names, times) {
   var indexBestName = 0;
 
   var badTime = times[0];
-  //var indexBadName = 0; // ругается сборщик пулреквеста
 
   while (lengthMassive--) {
     i = lengthMassive;
     if (times[i] < bestTime) {
       bestTime = times[i];
       indexBestName = i;
-    } /*else if (times[i] > badTime) {
-        badTime = times[i];
-        indexBadName = i;
-      }*/
+    }
   }
   // ------
 
@@ -59,7 +55,7 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = 'rgba(0, 179, 255,' + Opacity + ')';
     }
 
-    ctx.fillRect(initialX + indent * i, initialY , barWidth, -times[i] * step);
+    ctx.fillRect(initialX + indent * i, initialY, barWidth, -times[i] * step);
     ctx.fillStyle = 'black';
     ctx.fillText(names[i], initialX + indent * i, initialY + 20);
 
