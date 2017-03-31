@@ -5,7 +5,7 @@ var blockSetup = document.querySelector('.setup');           // окно setup
 var toggleClose = document.querySelector('.setup-close');    // 'крестик' закрытия окна setup
 var listWizard = document.querySelector('.setup-similar');   // похожие персонажи
 
-function openBlock(toggleClass, closeSelector){              //  функция для отрытия и закрытия окон
+function openBlock(toggleClass, closeSelector) {              // функция для отрытия и закрытия окон
   if (toggleClass.classList.contains(closeSelector)) {
     toggleClass.classList.remove(closeSelector);
   } else {
@@ -13,13 +13,13 @@ function openBlock(toggleClass, closeSelector){              //  функция
   }
 }
 
-toggleOpen.addEventListener('click', function() {             // отслеживаем клик по кнопке и запускаем функцию openBlock
+toggleOpen.addEventListener('click', function () {             // отслеживаем клик по кнопке и запускаем функцию openBlock
   openBlock(blockSetup, 'hidden');
   listWizard.classList.remove('hidden');                      // пока открываться будет одновременно с окном setup
 });
 
 toggleClose.addEventListener('click', function () {           // закрываем окно по крестику
-  blockSetup.classList.add('hidden')
+  blockSetup.classList.add('hidden');
 });
 
 var WIZZARD_NAME = [
@@ -68,7 +68,7 @@ var renderName = function () {
   var nameRandom = Math.floor(Math.random() * WIZZARD_NAME.length); // генерация рандомного имени
   var secondNameRandom = Math.floor(Math.random() * WIZZARS_SECOND_NAME.length); // генерация рандомной фамилии
 
-  if ( orderName == true ) {
+  if (orderName === true) {
     wizardFio = WIZZARD_NAME[nameRandom] + ' ' + WIZZARS_SECOND_NAME[secondNameRandom]; // склейка имя + фамилия
   } else {
     wizardFio = WIZZARS_SECOND_NAME[secondNameRandom] + ' ' + WIZZARD_NAME[nameRandom]; // склейка фамилия + имя
@@ -93,24 +93,24 @@ var renderColorEyes = function () {
 
 var wizards = [  // массив случайных магов
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+  name : renderName(),
+  coatColor : renderColorCoat(),
+  eyesColor : renderColorEyes()
   },
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+  name : renderName(),
+  coatColor : renderColorCoat(),
+  eyesColor : renderColorEyes()
   },
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+  name : renderName(),
+  coatColor : renderColorCoat(),
+  eyesColor : renderColorEyes()
   },
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+  name : renderName(),
+  coatColor : renderColorCoat(),
+  eyesColor : renderColorEyes()
   }
 ];
 
