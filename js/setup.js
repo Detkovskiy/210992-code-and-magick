@@ -93,24 +93,24 @@ var renderColorEyes = function () {
 
 var wizards = [  // массив случайных магов
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+    name: renderName(),
+    coatColor: renderColorCoat(),
+    eyesColor: renderColorEyes()
   },
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+    name: renderName(),
+    coatColor: renderColorCoat(),
+    eyesColor: renderColorEyes()
   },
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+    name: renderName(),
+    coatColor: renderColorCoat(),
+    eyesColor: renderColorEyes()
   },
   {
-    name : renderName(),
-    coatColor : renderColorCoat(),
-    eyesColor : renderColorEyes()
+    name: renderName(),
+    coatColor: renderColorCoat(),
+    eyesColor: renderColorEyes()
   }
 ];
 
