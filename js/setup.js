@@ -3,8 +3,7 @@
 var toggleOpen = document.querySelector('.setup-open-icon'); // иконка открытия setup
 var blockSetup = document.querySelector('.setup');           // окно setup
 var toggleClose = document.querySelector('.setup-close');    // 'крестик' закрытия окна setup
-
-var listWizzard = document.querySelector('.setup-similar');  // похожие персонажи
+var listWizard = document.querySelector('.setup-similar');   // похожие персонажи
 
 function openBlock(toggleClass, closeSelector){              //  функция для отрытия и закрытия окон
   if (toggleClass.classList.contains(closeSelector)) {
@@ -16,26 +15,14 @@ function openBlock(toggleClass, closeSelector){              //  функция
 
 toggleOpen.addEventListener('click', function() {             // отслеживаем клик по кнопке и запускаем функцию openBlock
   openBlock(blockSetup, 'hidden');
-  listWizzard.classList.remove('hidden');                     // пока открываться будет одновременно с окном setup
+  listWizard.classList.remove('hidden');                      // пока открываться будет одновременно с окном setup
 });
 
 toggleClose.addEventListener('click', function () {           // закрываем окно по крестику
   blockSetup.classList.add('hidden')
 });
-/*
-var wizzardName = ['Иван','Хуан Себастьян','Мария','Кристоф','Виктор','Юлия','Люпита','Вашингтон'];
-var wizzardSecondName = ['да Марья','Верон','Мирабелла','Вальц','Онопко','Топольницкая','Нионго','Ирвинг'];
-var orderName = true; // переключатель последовательности ФИО
-var nameRandom = Math.floor(Math.random() * wizzardName.length); // генерация рандомного имени
-var secondNameRandom = Math.floor(Math.random() * wizzardSecondName.length); // генерация рандомной фамилии
 
-if ( orderName == true ) {
-  var wizzardPersona = wizzardName[nameRandom] + ' ' + wizzardSecondName[secondNameRandom]; // склейка имя + фамилия
-} else {
-  var wizzardPersona = wizzardSecondName[secondNameRandom] + ' ' + wizzardName[nameRandom]; // склейка фамилия + имя
-}*/
-
-var wizzardName = [
+var WIZZARD_NAME = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -46,7 +33,7 @@ var wizzardName = [
   'Вашингтон'
 ];
 
-var wizzardSecondName = [
+var WIZZARS_SECOND_NAME = [
   'да Марья',
   'Верон',
   'Мирабелла',
@@ -57,7 +44,7 @@ var wizzardSecondName = [
   'Ирвинг'
 ];
 
-var colorC = [
+var COLOR_C = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -66,7 +53,7 @@ var colorC = [
   'rgb(0, 0, 0)'
 ];
 
-var colorY = [
+var COLOR_E = [
   'black',
   'red',
   'blue',
@@ -75,25 +62,76 @@ var colorY = [
 ];
 
 var orderName = true; // переключатель последовательности ФИО
-var nameRandom = Math.floor(Math.random() * wizzardName.length); // генерация рандомного имени
-var secondNameRandom = Math.floor(Math.random() * wizzardSecondName.length); // генерация рандомной фамилии
-var colorCRandom = Math.floor(Math.random() * colorC.length); // генерация рандомного цвета накидки
-var colorYRandom = Math.floor(Math.random() * colorY.length); // генерация рандомного цвета глаз
-var wizzardPersona = 0;
 
-if ( orderName == true ) {
-   wizzardPersona = wizzardName[nameRandom] + ' ' + wizzardSecondName[secondNameRandom]; // склейка имя + фамилия
-} else {
-   wizzardPersona = wizzardSecondName[secondNameRandom] + ' ' + wizzardName[nameRandom]; // склейка фамилия + имя
-}
+var renderName = function () {
+  var wizardFio = 0;
+  var nameRandom = Math.floor(Math.random() * WIZZARD_NAME.length); // генерация рандомного имени
+  var secondNameRandom = Math.floor(Math.random() * WIZZARS_SECOND_NAME.length); // генерация рандомной фамилии
 
-var cColor = colorC[colorCRandom]; // получение цвета накидки из массива
-var yColor = colorY[colorYRandom]; // получение цвета глаз из массива
+  if ( orderName == true ) {
+    wizardFio = WIZZARD_NAME[nameRandom] + ' ' + WIZZARS_SECOND_NAME[secondNameRandom]; // склейка имя + фамилия
+  } else {
+    wizardFio = WIZZARS_SECOND_NAME[secondNameRandom] + ' ' + WIZZARD_NAME[nameRandom]; // склейка фамилия + имя
+  }
 
-var wizzard = {
-  name : wizzardPersona,
-  coatColor : cColor,
-  eyesColor : yColor
+  return wizardFio;
 };
 
+var renderColorCoat = function () {
+  var RandomColorNumber = Math.floor(Math.random() * COLOR_C.length); // генерация рандомного цвета накидки
+  var renderColor = COLOR_C[RandomColorNumber]; // получение цвета накидки из массива
+
+  return renderColor;
+};
+
+var renderColorEyes = function () {
+  var RandomColorNumber = Math.floor(Math.random() * COLOR_E.length); // генерация рандомного цвета глаз
+  var renderColor = COLOR_E[RandomColorNumber]; // получение цвета накидки из массива
+
+  return renderColor;
+};
+
+var wizards = [  // массив случайных магов
+  {
+    name : renderName(),
+    coatColor : renderColorCoat(),
+    eyesColor : renderColorEyes()
+  },
+  {
+    name : renderName(),
+    coatColor : renderColorCoat(),
+    eyesColor : renderColorEyes()
+  },
+  {
+    name : renderName(),
+    coatColor : renderColorCoat(),
+    eyesColor : renderColorEyes()
+  },
+  {
+    name : renderName(),
+    coatColor : renderColorCoat(),
+    eyesColor : renderColorEyes()
+  }
+];
+
+var ListWizard = blockSetup.querySelector('.setup-similar-list');
+var WizardTemplate = document.querySelector('#similar-wizard-template').content;
+
+var renderWizard = function (wizard) {
+  var wizardElement = WizardTemplate.cloneNode(true);
+
+  wizardElement.querySelector('.setup-similar-label').textContent = renderName();
+  wizardElement.querySelector('.wizard-coat').style.fill = renderColorCoat();
+  wizardElement.querySelector('.wizard-eyes').style.fill = renderColorEyes();
+
+  return wizardElement;
+};
+
+var fragment = document.createDocumentFragment();
+
+for (var i = 0; i < wizards.length; i++) {
+  fragment.appendChild(renderWizard(wizards[i]));
+}
+
+ListWizard.appendChild(fragment);
 
