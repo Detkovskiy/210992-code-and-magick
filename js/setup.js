@@ -5,7 +5,7 @@ var blockSetup = document.querySelector('.setup');           // окно setup
 var toggleClose = document.querySelector('.setup-close');    // 'крестик' закрытия окна setup
 var listWizard = document.querySelector('.setup-similar');   // похожие персонажи
 
-function openBlock(toggleClass, closeSelector) {              // функция для отрытия и закрытия окон
+function openBlock(toggleClass, closeSelector) {             // функция для отрытия и закрытия окон
   if (toggleClass.classList.contains(closeSelector)) {
     toggleClass.classList.remove(closeSelector);
   } else {
@@ -13,7 +13,7 @@ function openBlock(toggleClass, closeSelector) {              // функция
   }
 }
 
-toggleOpen.addEventListener('click', function () {             // отслеживаем клик по кнопке и запускаем функцию openBlock
+toggleOpen.addEventListener('click', function () {            // отслеживаем клик по кнопке и запускаем функцию openBlock
   openBlock(blockSetup, 'hidden');
   listWizard.classList.remove('hidden');                      // пока открываться будет одновременно с окном setup
 });
@@ -93,24 +93,24 @@ var renderColorEyes = function () {
 
 var wizards = [  // массив случайных магов
   {
-  name : renderName(),
-  coatColor : renderColorCoat(),
-  eyesColor : renderColorEyes()
+   name : renderName(),
+   coatColor : renderColorCoat(),
+   eyesColor : renderColorEyes()
   },
   {
-  name : renderName(),
-  coatColor : renderColorCoat(),
-  eyesColor : renderColorEyes()
+   name : renderName(),
+   coatColor : renderColorCoat(),
+   eyesColor : renderColorEyes()
   },
   {
-  name : renderName(),
-  coatColor : renderColorCoat(),
-  eyesColor : renderColorEyes()
+   name : renderName(),
+   coatColor : renderColorCoat(),
+   eyesColor : renderColorEyes()
   },
   {
-  name : renderName(),
-  coatColor : renderColorCoat(),
-  eyesColor : renderColorEyes()
+   name : renderName(),
+   coatColor : renderColorCoat(),
+   eyesColor : renderColorEyes()
   }
 ];
 
