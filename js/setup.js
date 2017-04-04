@@ -63,54 +63,47 @@ var COLOR_E = [
 
 var orderName = true; // переключатель последовательности ФИО
 
+/* функция возвращает рандомное значение из массива */
+var getRandomItemArr = function (arr) {
+  var randomNumber = Math.floor(Math.random() * arr.length);
+
+  return arr[randomNumber];
+};
+
 var renderName = function () {
   var wizardFio = 0;
-  var nameRandom = Math.floor(Math.random() * WIZZARD_NAME.length); // генерация рандомного имени
-  var secondNameRandom = Math.floor(Math.random() * WIZZARS_SECOND_NAME.length); // генерация рандомной фамилии
+  var nameRandom = getRandomItemArr(WIZZARD_NAME); // генерация рандомного имени
+  var secondNameRandom = getRandomItemArr(WIZZARS_SECOND_NAME); // генерация рандомной фамилии
 
   if (orderName === true) {
-    wizardFio = WIZZARD_NAME[nameRandom] + ' ' + WIZZARS_SECOND_NAME[secondNameRandom]; // склейка имя + фамилия
+    wizardFio = nameRandom + ' ' + secondNameRandom; // склейка имя + фамилия
   } else {
-    wizardFio = WIZZARS_SECOND_NAME[secondNameRandom] + ' ' + WIZZARD_NAME[nameRandom]; // склейка фамилия + имя
+    wizardFio = secondNameRandom + ' ' + nameRandom; // склейка фамилия + имя
   }
 
   return wizardFio;
 };
 
-var renderColorCoat = function () {
-  var RandomColorNumber = Math.floor(Math.random() * COLOR_C.length); // генерация рандомного цвета накидки
-  var renderColor = COLOR_C[RandomColorNumber]; // получение цвета накидки из массива
-
-  return renderColor;
-};
-
-var renderColorEyes = function () {
-  var RandomColorNumber = Math.floor(Math.random() * COLOR_E.length); // генерация рандомного цвета глаз
-  var renderColor = COLOR_E[RandomColorNumber]; // получение цвета накидки из массива
-
-  return renderColor;
-};
-
 var wizards = [  // массив случайных магов
   {
     name: renderName(),
-    coatColor: renderColorCoat(),
-    eyesColor: renderColorEyes()
+    coatColor: getRandomItemArr(COLOR_C),
+    eyesColor: getRandomItemArr(COLOR_E)
   },
   {
     name: renderName(),
-    coatColor: renderColorCoat(),
-    eyesColor: renderColorEyes()
+    coatColor: getRandomItemArr(COLOR_C),
+    eyesColor: getRandomItemArr(COLOR_E)
   },
   {
     name: renderName(),
-    coatColor: renderColorCoat(),
-    eyesColor: renderColorEyes()
+    coatColor: getRandomItemArr(COLOR_C),
+    eyesColor: getRandomItemArr(COLOR_E)
   },
   {
     name: renderName(),
-    coatColor: renderColorCoat(),
-    eyesColor: renderColorEyes()
+    coatColor: getRandomItemArr(COLOR_C),
+    eyesColor: getRandomItemArr(COLOR_E)
   }
 ];
 
@@ -121,8 +114,8 @@ var renderWizard = function (wizard) {
   var wizardElement = WizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = renderName();
-  wizardElement.querySelector('.wizard-coat').style.fill = renderColorCoat();
-  wizardElement.querySelector('.wizard-eyes').style.fill = renderColorEyes();
+  wizardElement.querySelector('.wizard-coat').style.fill = getRandomItemArr(COLOR_C);
+  wizardElement.querySelector('.wizard-eyes').style.fill = getRandomItemArr(COLOR_E);
 
   return wizardElement;
 };
