@@ -1,25 +1,50 @@
 'use strict';
 
-var toggleOpen = document.querySelector('.setup-open-icon'); // иконка открытия setup
-var blockSetup = document.querySelector('.setup');           // окно setup
-var toggleClose = document.querySelector('.setup-close');    // 'крестик' закрытия окна setup
-var listWizard = document.querySelector('.setup-similar');   // похожие персонажи
+var setupOpen = document.querySelector('.setup-open');
+var blockSetup = document.querySelector('.setup');
+var setupClose = blockSetup.querySelector('.setup-close');
+var userName = blockSetup.querySelector('.setup-user-name');
 
-function openBlock(toggleClass, closeSelector) {
-  if (toggleClass.classList.contains(closeSelector)) {
-    toggleClass.classList.remove(closeSelector);
-  } else {
-    toggleClass.classList.add(closeSelector);
+var onEscPress = function (evt) {
+  if(evt.keyCode ===27) {
+    closeBlockSetup();
   }
-}
+};
 
-toggleOpen.addEventListener('click', function () {            // отслеживаем клик по кнопке и запускаем функцию openBlock
-  openBlock(blockSetup, 'hidden');
-  listWizard.classList.remove('hidden');                      // пока открываться будет одновременно с окном setup
+var openBlockSetup = function () {
+  blockSetup.classList.remove('hidden');
+  document.addEventListener('keydown', onEscPress);
+};
+
+var closeBlockSetup = function () {
+  blockSetup.classList.add('hidden');
+  document.removeEventListener('keydown', onEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openBlockSetup();
 });
 
-toggleClose.addEventListener('click', function () {           // закрываем окно по крестику
-  blockSetup.classList.add('hidden');
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    openBlockSetup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closeBlockSetup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    closeBlockSetup();
+  }
+});
+
+userName.addEventListener('keydown', function (evt) {
+  if(evt.keyCode === 27) {
+    evt.stopPropagation();
+  }
 });
 
 var WIZZARD_NAME = [
@@ -59,6 +84,14 @@ var COLOR_E = [
   'blue',
   'yellow',
   'green'
+];
+
+var COLOR_FAREBALL = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
 ];
 
 var orderName = true; // переключатель последовательности ФИО
@@ -107,7 +140,7 @@ var wizards = [  // массив случайных магов
   }
 ];
 
-var ListWizard = blockSetup.querySelector('.setup-similar-list');
+var listWizard = blockSetup.querySelector('.setup-similar-list');
 var WizardTemplate = document.querySelector('#similar-wizard-template').content;
 
 var renderWizard = function (wizard) {
@@ -126,5 +159,22 @@ for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
 }
 
-ListWizard.appendChild(fragment);
+listWizard.appendChild(fragment);
 
+/* меняем цвет мага */
+var wizard = document.querySelector('.setup-player');
+var wizardCoat = wizard.querySelector('.wizard-coat');
+var wizardEyes = wizard.querySelector('.wizard-eyes');
+var wizardFireball = wizard.querySelector('.setup-fireball-wrap');
+
+wizardCoat.addEventListener('click', function () {
+  wizardCoat.style.fill = getRandomItemArr(COLOR_C);
+});
+
+wizardEyes.addEventListener('click', function () {
+  wizardEyes.style.fill = getRandomItemArr(COLOR_E);
+});
+
+wizardFireball.addEventListener('click', function () {
+  wizardFireball.style.background = getRandomItemArr(COLOR_FAREBALL);
+});
