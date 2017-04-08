@@ -6,7 +6,7 @@ var setupClose = blockSetup.querySelector('.setup-close');
 var userName = blockSetup.querySelector('.setup-user-name');
 
 var onEscPress = function (evt) {
-  if(evt.keyCode ===27) {
+  if (evt.keyCode === 27) {
     closeBlockSetup();
   }
 };
@@ -42,7 +42,7 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 userName.addEventListener('keydown', function (evt) {
-  if(evt.keyCode === 27) {
+  if (evt.keyCode === 27) {
     evt.stopPropagation();
   }
 });
