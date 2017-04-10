@@ -5,9 +5,15 @@ var blockSetup = document.querySelector('.setup');
 var setupClose = blockSetup.querySelector('.setup-close');
 var userName = blockSetup.querySelector('.setup-user-name');
 
+var validityInput = function () {
+  if (userName.validity.valid) {
+    closeBlockSetup();
+  }
+};
+
 var onEscPress = function (evt) {
   if (evt.keyCode === 27) {
-    closeBlockSetup();
+    validityInput();
   }
 };
 
@@ -32,12 +38,12 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  closeBlockSetup();
+  validityInput();
 });
 
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 13) {
-    closeBlockSetup();
+    validityInput();
   }
 });
 
